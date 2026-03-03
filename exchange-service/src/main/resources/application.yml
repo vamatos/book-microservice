@@ -1,0 +1,37 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: exchange-service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3308/exchange_service?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+    open-in-view: false
+  management:
+    tracing:
+      sampling:
+        probability: 1.0
+  zipkin:
+    base-url: ${SPRING_ZIPKIN_BASEURL:http://localhost:9411}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+springdoc:
+  api-docs:
+    path: /exchange-service/v3/api-docs
+  swagger-ui:
+    url: /exchange-service/v3/api-docs
+  override-server-url: true
+
+

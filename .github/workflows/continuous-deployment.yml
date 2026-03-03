@@ -24,8 +24,6 @@ jobs:
         java-version: '21'
         distribution: 'adopt'
 
-    - name: Build and Push Docker Images
+    - name: Build Eureka Naming Service Docker Image
       working-directory: ./naming-service
       run: mvn spring-boot:build image -DskipTests
-        
-

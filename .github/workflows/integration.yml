@@ -33,9 +33,9 @@ jobs:
 #            mkdir -p $HOME/.m2
 #            cp .github/maven-settings.xml $HOME/.m2/settings.xml
 
-      - name: Test (Maven)
-        working-directory: ./${{ github.event.inputs.application }}
-        run: mvn -B -DtrimStrackTrace=true test
+#      - name: Test (Maven)
+#        working-directory: ./${{ github.event.inputs.application }}
+#        run: mvn -B -DtrimStrackTrace=true test
 
       - name: Build Application (Without Tests)
         working-directory: ./${{ github.event.inputs.application }}

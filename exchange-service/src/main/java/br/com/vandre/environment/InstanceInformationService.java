@@ -1,5 +1,6 @@
 package br.com.vandre.environment;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.context.WebServerInitializedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class InstanceInformationService implements ApplicationListener<WebServer
     }
 
     public String getHostName() {
-        return hostName.substring(hostname.length() - 5);
+        return hostName.substring(hostName.length() - 5);
     }
 
     public String retrieveServerPort() {

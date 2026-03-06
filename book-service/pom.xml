@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>br.com.vandre</groupId>
 	<artifactId>book-service</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>book-service</name>
 	<description>Demo project for Spring Boot</description>
 	<url />

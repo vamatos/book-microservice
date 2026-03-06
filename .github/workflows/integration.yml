@@ -45,7 +45,7 @@ jobs:
         working-directory: ./${{ github.event.inputs.application }}
         id: props
         run: |
-          version=(grep -oPm1 "(?<=<version>)[^<]+" pom.xml | sed 's/-SNAPSHOT//')
+          version=$(grep -oPm1 "(?<=<version>)[^<]+" pom.xml | sed 's/-SNAPSHOT//')
             echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Patch Version

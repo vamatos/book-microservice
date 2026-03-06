@@ -9,9 +9,16 @@ public class InstanceInformationService implements ApplicationListener<WebServer
 
     private String port;
 
+    @Value("${HOSTNAME:LOCAL}")
+    private String hostName;
+
     @Override
     public void onApplicationEvent(WebServerInitializedEvent event) {
         this.port = String.valueOf(event.getWebServer().getPort());
+    }
+
+    public String getHostName() {
+        return hostName.substring(hostname.length() - 5);
     }
 
     public String retrieveServerPort() {

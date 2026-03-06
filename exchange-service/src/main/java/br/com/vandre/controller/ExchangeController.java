@@ -45,8 +45,10 @@ public class ExchangeController {
         BigDecimal conversionFactor = exchange.getConversionFactor();
         BigDecimal convertedValue = conversionFactor.multiply(amount);
 
+        String port = instanceInformationService.retrieveServerPort();
+        String hostName = instanceInformationService.getHostName();
         exchange.setConvertedValue(convertedValue);
-        exchange.setEnvironment("PORT " + instanceInformationService.retrieveServerPort());
+        exchange.setEnvironment("PORT " + port + " Host: " + hostName);
 
         return exchange;
     }

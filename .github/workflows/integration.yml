@@ -82,10 +82,10 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v7.0.0
         with:
-          context: .
+          context: ./${{ github.event.inputs.application }}
           file: ./${{ github.event.inputs.application }}/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.inputs.application }}:${{ steps.props.outputs.version }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.inputs.application }}:${{ steps.props.outputs.version || steps.snapshot_version.outputs.version }}
           build-args: |
             APPLICATION=${{ github.event.inputs.application }}
             APP_VERSION=${{ env.APP_VERSION }}

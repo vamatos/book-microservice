@@ -57,23 +57,12 @@ jobs:
           git config --global user.email "14viniciusandre@gmail.com"
           git fetch --unshallow || true
           git fetch --tags || true
-          
-          # Lê versão atual (sem -SNAPSHOT)
-          current=$(grep -oPm1 "(?<=<version>)[^<]+" pom.xml | head -1 | sed 's/-SNAPSHOT//')
-          
-          # Incrementa versão patch (ex: 0.0.5 -> 0.0.6)
-          new_version=$(echo $current | awk -F. '{print $1"."$2"."$3+1}')
-          
-          # Atualiza pom.xml com a nova versão
-          sed -i "0,/<version>$current-SNAPSHOT<\/version>/{s/<version>$current-SNAPSHOT<\/version>/<version>$new_version-SNAPSHOT<\/version>/}" pom.xml
-          
-          # Commit e push da nova versão
-          git add pom.xml
-          git commit -m "Github Actions - Bump version to $new_version"
+          mvn release:update-versions -B -DautoVersionSubmodules=true -Dmaven.test.skip=true
+          version=$(grep -oPm1 "(?<=<version>)[^<]+" pom.xml | sed 's/-SNAPSHOT//')
+          git commit -am "Github Actons - Bump version to $version"
           git push origin main
-          
-          echo "APP_VERSION=$new_version" >> $GITHUB_ENV
-          echo "version=$new_version" >> $GITHUB_OUTPUT
+          echo "APP_VERSION=$version" >> $GITHUB_ENV
+          echo "version=$version" >> $GITHUB_OUTPUT
           echo "APP_NAME=${{ github.event.inputs.application }}" >> $GITHUB_ENV
 
       - name: Snapshot Version

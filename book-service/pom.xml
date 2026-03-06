@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.vandre</groupId>
 	<artifactId>book-service</artifactId>
-	<version>0.0.7-SNAPSHOT</version>
+	<version>0.0.8-SNAPSHOT</version>
 	<name>book-service</name>
 	<description>Demo project for Spring Boot</description>
     <parent>

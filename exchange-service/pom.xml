@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.vandre</groupId>
 	<artifactId>exchange-service</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>exchange-service</name>
 	<description>Demo project for Spring Boot</description>
     <parent>

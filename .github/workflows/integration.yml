@@ -34,10 +34,10 @@ jobs:
 #            cp .github/maven-settings.xml $HOME/.m2/settings.xml
 
       - name: Test (Maven)
-        run: ./mvnw -B -DtrimStrackTrace=true test
+        run: mvn -B -DtrimStrackTrace=true test
 
       - name: Build Application (Without Tests)
-        run: ./mvnw clean package -Dmaven.test.skip=true
+        run: mvn clean package -Dmaven.test.skip=true
 
       - name: Read Version from pom.xml
         id: props
@@ -53,7 +53,7 @@ jobs:
           git config --global user.email "14viniciusandre@gmail.com"
           git fetch --unshallow || true
           git fetch --tags || true
-          ./mvnw release:update-versions -B -DautoVersionSubmodules=true -Dmaven.test.skip=true
+          mvn release:update-versions -B -DautoVersionSubmodules=true -Dmaven.test.skip=true
           version=$(grep -oPm1 "(?<=<version>)[^<]+" pom.xml | sed 's/-SNAPSHOT//')
           git commit -am "Github Actons - Bump version to $version"
           git push origin main

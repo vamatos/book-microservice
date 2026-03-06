@@ -34,18 +34,22 @@ jobs:
 #            cp .github/maven-settings.xml $HOME/.m2/settings.xml
 
       - name: Test (Maven)
+        working-directory: ./${{ github.event.inputs.application }}
         run: mvn -B -DtrimStrackTrace=true test
 
       - name: Build Application (Without Tests)
+        working-directory: ./${{ github.event.inputs.application }}
         run: mvn clean package -Dmaven.test.skip=true
 
       - name: Read Version from pom.xml
+        working-directory: ./${{ github.event.inputs.application }}
         id: props
         run: |
           version=(grep -oPm1 "(?<=<version>)[^<]+" pom.xml | sed 's/-SNAPSHOT//')
             echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Patch Version
+        working-directory: ./${{ github.event.inputs.application }}
         id: patch_version
         if: ${{ github.ref == 'refs/heads/main' }}
         run: |
